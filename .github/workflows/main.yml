@@ -1,0 +1,57 @@
+name: Deploy Next.js to S3
+
+on:
+  push:
+    branches: [ "main" ]
+
+permissions:
+  id-token: write   # for OIDC
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Build (static export)
+        run: |
+          npm run build
+          # Next.js with output: 'export' puts files into ./out
+
+      - name: Configure AWS creds (OIDC)
+        uses: aws-actions/configure-aws-credentials@v5
+        with:
+          role-to-assume: arn:aws:iam::980921724830:role/github-oidc-deploy
+          aws-region: ca-central-1
+          mask-aws-account-id: true
+
+      - name: Sync to S3
+        run: |
+          aws s3 sync ./out s3://shaikh-portfolio-site/ \
+            --delete \
+            --cache-control max-age=31536000,public \
+            --exclude "index.html" --exclude "404.html"
+          aws s3 cp ./out/index.html s3://shaikh-portfolio-site/index.html --cache-control no-cache
+          aws s3 cp ./out/404.html   s3://shaikh-portfolio-site/404.html   --cache-control no-cache
+
+      # OPTIONAL: Invalidate CloudFront after deploy
+      - name: Invalidate CloudFront
+        if: ${{ always() && env.CLOUDFRONT_DISTRIBUTION_ID != '' }}
+        env:
+          CLOUDFRONT_DISTRIBUTION_ID: "<DISTRIBUTION_ID>"
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id "$CLOUDFRONT_DISTRIBUTION_ID" \
+            --paths "/*"
