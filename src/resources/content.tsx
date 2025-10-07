@@ -88,6 +88,10 @@ const about: About = {
     display: true,
     link: "https://cal.com",
   },
+  resume: {
+    display: true,
+    link: "/resume.pdf",
+  },
   intro: {
     display: true,
     title: "Introduction",
@@ -390,6 +394,18 @@ const about: About = {
         credentialId: "62c443ec84ff0645ca1f6b95",
         credentialUrl: "https://www.credly.com/badges/bf8962d1-266b-42c9-aca1-9aa875242ff4?source=linked_in_profile",
         description: "This badge earner demonstrates knowledge of continuous integration and continuous deployment (CI/CD) strategies on IBM Cloud Private. The badge earner has demonstrated the ability to describe the relationships between Kubernetes, Helm, Jenkins, and UrbanCode in a CI/CD strategy. The earner also has demonstrated an understanding of how CI/CD is part of an overall DevOps strategy.",
+      },
+    ],
+  },
+  awards: {
+    display: true,
+    title: "Awards",
+    awards: [
+      {
+        name: "Rising Star",
+        issuer: "Systems Limited",
+        date: "2022",
+        description: "Recognized with the Rising Star Award at Systems Limited for demonstrating exceptional growth, adaptability, and impact within a short span of time. This award highlighted my ability to quickly master complex DevOps practices, deliver high-quality automation solutions, and contribute proactively to team success.",
       },
     ],
   },

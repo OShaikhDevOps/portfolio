@@ -125,6 +125,13 @@ export interface About extends BasePageConfig {
     /** Link to the calendar */
     link: string;
   };
+  /** Resume section configuration */
+  resume: {
+    /** Whether to display the resume download button */
+    display: boolean;
+    /** Link to the resume file */
+    link: string;
+  };
   /** Introduction section */
   intro: {
     /** Whether to display the introduction */
@@ -231,7 +238,26 @@ export interface About extends BasePageConfig {
       description?: React.ReactNode;
     }>;
   };
+  awards: {
+    /** Whether to display awards section */
+    display: boolean;
+    /** Title for the certifications section */
+    title: string;
+    /** List of awards */
+    awards: Array<{
+      /** Certification name */
+      name: string;
+      /** Issuing organization */
+      issuer: string;
+      /** Date obtained */
+      date: string;
+      /** Optional description */
+      description?: React.ReactNode;
+    }>;
+  };
 }
+
+
 
 /**
  * Blog page configuration.

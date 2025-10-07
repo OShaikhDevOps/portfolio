@@ -123,31 +123,70 @@ export default function About() {
             vertical="center"
             marginBottom="32"
           >
-            {about.calendar.display && (
-              <Row
-                fitWidth
-                border="brand-alpha-medium"
-                background="brand-alpha-weak"
-                radius="full"
-                padding="4"
-                gap="8"
-                marginBottom="m"
-                vertical="center"
-                className={styles.blockAlign}
-                style={{
-                  backdropFilter: "blur(var(--static-space-1))",
-                }}
-              >
-                <Icon paddingLeft="12" name="calendar" onBackground="brand-weak" />
-                <Row paddingX="8">Schedule a call</Row>
-                <IconButton
+            <Row
+              fitWidth
+              gap="12"
+              marginBottom="m"
+              className={styles.blockAlign}
+              wrap
+            >
+              {about.calendar.display && (
+                <SmartLink
                   href={about.calendar.link}
-                  data-border="rounded"
-                  variant="secondary"
-                  icon="chevronRight"
-                />
-              </Row>
-            )}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <Row
+                    fitWidth
+                    border="brand-alpha-medium"
+                    background="brand-alpha-weak"
+                    radius="full"
+                    padding="4"
+                    gap="8"
+                    vertical="center"
+                    style={{
+                      backdropFilter: "blur(var(--static-space-1))",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <Icon paddingLeft="12" name="calendar" onBackground="brand-weak" />
+                    <Row paddingX="8">Schedule a call</Row>
+                    <Icon
+                      paddingRight="12"
+                      name="chevronRight"
+                      onBackground="brand-weak"
+                    />
+                  </Row>
+                </SmartLink>
+              )}
+              {about.resume.display && (
+                <SmartLink
+                  href={about.resume.link}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <Row
+                    fitWidth
+                    border="brand-alpha-medium"
+                    background="brand-alpha-weak"
+                    radius="full"
+                    padding="4"
+                    gap="8"
+                    vertical="center"
+                    style={{
+                      backdropFilter: "blur(var(--static-space-1))",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <Icon paddingLeft="12" name="document" onBackground="brand-weak" />
+                    <Row paddingX="8">Download Resume</Row>
+                    <Icon
+                      paddingRight="12"
+                      name="chevronRight"
+                      onBackground="brand-weak"
+                    />
+                  </Row>
+                </SmartLink>
+              )}
+            </Row>
             <Heading className={styles.textAlign} variant="display-strong-xl">
               {person.name}
             </Heading>
@@ -392,6 +431,42 @@ export default function About() {
                           </SmartLink>
                         )}
                       </Row>
+                    )}
+                  </Column>
+                ))}
+              </Column>
+            </>
+          )}
+
+          {about.awards.display && (
+            <>
+              <Heading
+                as="h2"
+                id={about.awards.title}
+                variant="display-strong-s"
+                marginBottom="xs"
+                marginTop="xl"
+              >
+                {about.awards.title}
+              </Heading>
+              <Column fillWidth gap="l">
+                {about.awards.awards.map((cert, index) => (
+                  <Column key={`${cert.name}-${index}`} fillWidth gap="4">
+                    <Row fillWidth horizontal="between" vertical="end" marginBottom="4">
+                      <Text id={cert.name} variant="heading-strong-l">
+                        {cert.name}
+                      </Text>
+                      <Text variant="heading-default-xs" onBackground="neutral-weak">
+                        {cert.date}
+                      </Text>
+                    </Row>
+                    <Text variant="body-default-s" onBackground="brand-weak" marginBottom="m">
+                      {cert.issuer}
+                    </Text>
+                    {cert.description && (
+                      <Text variant="body-default-m" marginBottom="m">
+                        {cert.description}
+                      </Text>
                     )}
                   </Column>
                 ))}
