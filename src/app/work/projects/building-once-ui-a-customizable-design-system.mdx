@@ -1,45 +1,64 @@
 ---
-title: "Building Once UI, a Customizable Design System"
-publishedAt: "2024-04-08"
-summary: "Development of a flexible and highly customizable design system using Next.js for front-end and Figma for design collaboration."
+title: "DevSecOps Pipeline with Automated Security Scanning"
+publishedAt: "2024-06-10"
+summary: "Implemented a DevSecOps workflow that integrates automated security testing into CI/CD pipelines, ensuring vulnerabilities are caught before reaching production."
 images:
   - "/images/projects/project-01/cover-01.jpg"
-  - "/images/projects/project-01/cover-02.jpg"
-  - "/images/projects/project-01/cover-03.jpg"
-  - "/images/projects/project-01/cover-04.jpg"
+  - "/images/projects/project-01/image-02.jpg"
 team:
-  - name: "Selene Yu"
-    role: "Software Engineer"
-    avatar: "/images/avatar.jpg"
-    linkedIn: "https://www.linkedin.com/company/once-ui/"
-  - name: "Lorant One"
-    role: "Design Engineer"
-    avatar: "/images/projects/project-01/avatar-01.jpg"
-    linkedIn: "https://www.linkedin.com/company/once-ui/"
+  - name: "Osman Shaikh"
+    role: "DevOps & Security Engineer"
+    avatar: "/images/my_photo.jpeg"
+    linkedIn: "https://www.linkedin.com/in/ayemenshaikh"
+link: "https://github.com/yourusername/devsecops-pipeline"
 ---
 
 ## Overview
 
-Development of a flexible and highly customizable design system using Next.js for front-end and Figma for design collaboration.
+This project focused on embedding **security into the software delivery lifecycle** by building a DevSecOps pipeline. The goal was to prevent vulnerabilities from slipping into production by shifting security left and automating scans as part of CI/CD.  
+
+The pipeline enforces compliance, runs static and dependency scans, and blocks insecure deployments automatically.
+
+---
 
 ## Key Features
 
-- **Component Library**: Built a set of modular, reusable UI components using React and styled-components in Next.js, focusing on accessibility and responsiveness.
-- **Theming and Customization**: Integrated a theming system that allows easy switching and customization of color palettes, typography, and layout styles using CSS variables and Figma tokens.
-- **Figma Integration**: Collaborated closely with designers by setting up a shared design library in Figma. This library was synchronized with the codebase, ensuring design handoffs were seamless and that design tokens remained consistent across both platforms.
-- **Documentation and Usage Guidelines**: Developed comprehensive documentation with Storybook to showcase components, usage patterns, and best practices, ensuring the design system is easy to adopt by other teams.
+- **Static Application Security Testing (SAST)**: Integrated **SonarQube** and **Bandit** to scan codebases for insecure coding patterns and vulnerabilities.
+- **Software Composition Analysis (SCA)**: Added **OWASP Dependency-Check** and **Trivy** to scan dependencies and container images for CVEs.
+- **Secrets Scanning**: Prevented hardcoded secrets in repos with tools like **Gitleaks**.
+- **Policy Gates**: Configured pipelines to block builds if vulnerabilities above a certain severity were found.
+- **Automated Reporting**: Generated compliance and vulnerability reports pushed into Slack/MS Teams for visibility.
+- **Cloud Security Checks**: Automated AWS configuration audits with **Terraform validate** and **AWS Config rules**.
+
+---
 
 ## Technologies Used
 
-- **Next.js**: For fast, server-rendered React applications.
-- **Figma**: For creating and managing design assets and prototypes.
-- **Styled-Components**: For styling React components with a modular, themable approach.
-- **Storybook**: For building an interactive, documented component library.
+- **GitHub Actions / GitLab CI**: CI/CD pipeline orchestration.
+- **SonarQube, Bandit, OWASP Dependency-Check, Trivy**: Security scanning tools.
+- **Terraform & AWS Config**: Infrastructure security and compliance checks.
+- **Slack/MS Teams Webhooks**: For real-time notifications and reporting.
+
+---
 
 ## Challenges and Learnings
 
-One key challenge was balancing the need for flexibility with the desire to maintain design consistency. The solution involved creating well-defined design tokens and establishing clear guidelines for when and how components could be customized. Additionally, setting up effective collaboration workflows between designers and developers using Figma and Git was a learning experience that greatly improved the process.
+The main challenge was balancing **developer velocity** with **security enforcement**. Too many false positives can frustrate teams and slow delivery. To solve this, I:  
+
+- Tuned rules to reduce noise and focused on critical issues first.  
+- Built a **security exceptions workflow** for temporary approvals.  
+- Added caching and parallelization to keep scan times low (<5 minutes per pipeline).  
+
+---
 
 ## Outcome
 
-The design system is now actively used across multiple projects, leading to faster development cycles, fewer design inconsistencies, and improved collaboration between design and development teams. It has become a foundation for scaling our products efficiently while ensuring a cohesive user experience.
+This DevSecOps pipeline created a **“security by default” culture** where vulnerabilities are caught early, reducing risk and saving remediation time.  
+
+- **100% of deployments** now pass automated security checks.  
+- Reduced mean time to remediation (MTTR) for vulnerabilities by **60%**.  
+- Increased compliance confidence for audits (SOC2, ISO 27001).  
+
+---
+
+This project demonstrates my ability to **embed security into DevOps workflows**, delivering pipelines that are fast, secure, and compliant — essential for modern ML/DevOps and cloud engineering teams.

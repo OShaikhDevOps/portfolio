@@ -15,7 +15,7 @@ const person: Person = {
 const newsletter: Newsletter = {
   display: true,
   title: <>Subscribe to {person.firstName}'s Newsletter</>,
-  description: <>My weekly newsletter about creativity and engineering</>,
+  description: <>My weekly newsletter about DevOps and ML engineering</>,
 };
 
 const social: Social = [
@@ -54,8 +54,8 @@ const home: Home = {
     display: true,
     title: (
       <Row gap="12" vertical="center">
-        <strong className="ml-4">Once UI</strong>{" "}
-        <Line background="brand-alpha-strong" vert height="20" />
+        {/* <strong className="ml-4">My</strong> */}
+        {/* <Line background="brand-alpha-strong" vert height="20" /> */}
         <Text marginRight="4" onBackground="brand-medium">
           Featured work
         </Text>
@@ -352,12 +352,44 @@ const about: About = {
         description: "Demonstrates a high-level understanding of AWS Cloud services, terminology, and best practices.",
       },
       {
-        name: "Terraform Associate",
-        issuer: "HashiCorp",
-        date: "2023",
-        credentialId: "TF-ASSOC-2023-003",
-        credentialUrl: "https://www.hashicorp.com/certification/terraform-associate",
-        description: "Proves proficiency in infrastructure as code using Terraform.",
+        name: "AWS Certified DevOps Engineer – Professional",
+        issuer: "Amazon Web Services (AWS)",
+        date: "2024",
+        credentialId: "0c34fe2753c64209a6da8a53d804f08e",
+        credentialUrl: "https://www.credly.com/badges/6b37bfe8-2361-4d7d-b584-f3079cda3189/linked_in_profile",
+        description: "Showcases advanced technical expertise in provisioning, operating, and managing distributed application systems on AWS.",
+      },
+      {
+        name: "AWS Certified Solutions Architect – Associate",
+        issuer: "Amazon Web Services (AWS)",
+        date: "2024",
+        credentialId: "fea4d52afe94493ebc0ad597c8865b00",
+        credentialUrl: "https://www.credly.com/badges/efe76827-44fb-4f5c-ba8a-45f4f6bb9a40/linked_in_profile",
+        description: "Focused on the design of cost and performance optimized solutions",
+      },
+      {
+        name: "GitOps Fundamental",
+        issuer: "Codefresh",
+        date: "2022",
+        credentialId: "62c443ec84ff0645ca1f6b95",
+        credentialUrl: "https://codefresh.learnworlds.com/certificate/6197cb3b2fbcec4da328aab2/user/62c2bbfd792ef1107072e3e1",
+        description: "Gained foundational knowledge of GitOps principles using Codefresh, focusing on implementing continuous delivery workflows, managing Kubernetes applications through declarative Git-based operations, and optimizing pipelines for reliability, cost, and performance.",
+      },
+      {
+        name: "IBM Cloud Private - Foundation Technology",
+        issuer: "IBM",
+        date: "2021",
+        credentialId: "62c443ec84ff0645ca1f6b95",
+        credentialUrl: "https://www.credly.com/badges/7ec21d96-56fe-4192-b308-4850c0b945ac?source=linked_in_profile",
+        description: "This badge holder understands the core technologies of IBM Cloud Private: Containers, Docker, Kubernetes, Helm and Cloud Foundry. The earner understands how IBM Cloud Private supports choice in application development with Kubernetes, Cloud Foundry, and function-based programming models.",
+      },
+      {
+        name: "IBM Cloud Private - Continuous Integration/Continuous Delivery Pipelines",
+        issuer: "IBM",
+        date: "2021",
+        credentialId: "62c443ec84ff0645ca1f6b95",
+        credentialUrl: "https://www.credly.com/badges/bf8962d1-266b-42c9-aca1-9aa875242ff4?source=linked_in_profile",
+        description: "This badge earner demonstrates knowledge of continuous integration and continuous deployment (CI/CD) strategies on IBM Cloud Private. The badge earner has demonstrated the ability to describe the relationships between Kubernetes, Helm, Jenkins, and UrbanCode in a CI/CD strategy. The earner also has demonstrated an understanding of how CI/CD is part of an overall DevOps strategy.",
       },
     ],
   },

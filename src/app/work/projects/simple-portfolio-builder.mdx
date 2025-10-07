@@ -1,7 +1,61 @@
 ---
-title: "Once UI: Open-source design system"
-publishedAt: "2024-04-08"
+title: "Multi-AZ Disaster Recovery with Terraform and AWS"
+publishedAt: "2024-09-20"
+summary: "Built an automated, multi-AZ disaster recovery architecture on AWS using Terraform to ensure high availability, fault tolerance, and compliance for critical workloads."
 images:
-  - "/images/projects/project-01/cover-04.jpg"
-  - "/images/projects/project-01/video-01.mp4"
+  - "/images/projects/project-01/cover-01.jpg"
+  - "/images/projects/project-01/image-02.jpg"
+team:
+  - name: "Osman Shaikh"
+    role: "Cloud & DevOps Engineer"
+    avatar: "/images/my_photo.jpeg"
+    linkedIn: "https://www.linkedin.com/in/ayemenshaikh"
+link: "https://github.com/yourusername/aws-dr-terraform"
 ---
+
+## Overview
+
+In this project, I architected and automated a **multi-AZ disaster recovery solution** on AWS to ensure business continuity during outages. The solution included automated failover, data replication, and infrastructure provisioning using Infrastructure as Code (IaC).  
+
+The goal was to minimize downtime and data loss for mission-critical applications, while keeping the setup cost-efficient and fully automated.
+
+---
+
+## Key Features
+
+- **Infrastructure as Code (IaC)**: Used **Terraform** to provision VPCs, subnets, security groups, and replicated resources across multiple Availability Zones.
+- **Automated Database Replication**: Configured **Amazon RDS Multi-AZ** deployments with synchronous replication and automated failover.
+- **S3 Cross-Region Replication**: Ensured critical data was continuously replicated to a secondary region for compliance and resilience.
+- **Load Balancing & Auto Scaling**: Deployed applications behind **Application Load Balancers (ALB)** with **Auto Scaling Groups** for fault tolerance.
+- **Disaster Recovery Runbooks**: Automated failover tests using **AWS Systems Manager** and **Lambda**, reducing manual intervention.
+- **Monitoring & Alerts**: Integrated **CloudWatch + SNS** to detect failures and notify teams instantly.
+
+---
+
+## Technologies Used
+
+- **Terraform**: For reproducible, version-controlled infrastructure.  
+- **AWS RDS, S3, ALB, ASG**: Core AWS services for resilience.  
+- **AWS Lambda + Systems Manager**: Automating failover testing and runbooks.  
+- **CloudWatch + SNS**: Monitoring and alerting.  
+- **GitHub Actions**: CI/CD for infrastructure changes.  
+
+---
+
+## Challenges and Learnings
+
+- Designing for **low RTO/RPO** while keeping costs manageable was a challenge.  
+- Solved by automating **cold-standby** environments that scale up only during failover, saving costs while maintaining compliance.  
+- Learned the importance of **IaC modularity** to reuse Terraform modules across environments.  
+
+---
+
+## Outcome
+
+- Achieved **99.99% availability** with seamless failover between Availability Zones.  
+- Reduced disaster recovery drill time from **4 hours → under 30 minutes**.  
+- Provided auditors with evidence of compliance and resilience testing.  
+
+---
+
+This project demonstrates strong expertise in **cloud automation, resilience, and compliance**, showing the ability to build **fault-tolerant architectures** that can withstand failures and protect critical workloads.
