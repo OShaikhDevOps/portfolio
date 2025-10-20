@@ -12,7 +12,7 @@ import {
   Line,
 } from "@once-ui-system/core";
 import { home, about, person, baseURL, routes } from "@/resources";
-import { Mailchimp } from "@/components";
+import { Clients } from "@/components";
 import { Projects } from "@/components/work/Projects";
 import { Posts } from "@/components/blog/Posts";
 
@@ -124,7 +124,12 @@ export default function Home() {
         </Column>
       )}
       <Projects range={[2]} /> */}
-      <Mailchimp />
+      {home.clients.display && (
+        <RevealFx translateY="16" delay={0.8}>
+          <Clients title={home.clients.title} clients={home.clients.clients} />
+        </RevealFx>
+      )}
+      {/* Newsletter removed — Mailchimp not used */}
     </Column>
   );
 }

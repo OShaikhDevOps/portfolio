@@ -1,15 +1,15 @@
 import { Column, Heading, Meta, Schema } from "@once-ui-system/core";
-import { Mailchimp } from "@/components";
+// Mailchimp removed - newsletter not used
 import { Posts } from "@/components/blog/Posts";
-import { baseURL, blog, person, newsletter } from "@/resources";
+import { baseURL, person } from "@/resources";
 
 export async function generateMetadata() {
   return Meta.generate({
-    title: blog.title,
-    description: blog.description,
+    title: `Blog – ${person.name}`,
+    description: `Writing and posts by ${person.name}`,
     baseURL: baseURL,
     image: "/images/og/home.jpg",
-    path: blog.path,
+    path: "/blog",
   });
 }
 
@@ -19,9 +19,9 @@ export default function Blog() {
       <Schema
         as="blogPosting"
         baseURL={baseURL}
-        title={blog.title}
-        description={blog.description}
-        path={blog.path}
+        title={`Blog – ${person.name}`}
+        description={`Writing and posts by ${person.name}`}
+        path="/blog"
         image="/images/og/home.jpg"
         author={{
           name: person.name,
@@ -30,12 +30,12 @@ export default function Blog() {
         }}
       />
       <Heading marginBottom="l" variant="heading-strong-xl" marginLeft="24">
-        {blog.title}
+        Blog
       </Heading>
       <Column fillWidth flex={1} gap="40">
         <Posts range={[1, 1]} thumbnail />
         <Posts range={[2, 3]} columns="2" thumbnail direction="column" />
-        <Mailchimp marginBottom="l" />
+  {/* Newsletter removed — Mailchimp not used */}
         <Heading as="h2" variant="heading-strong-xl" marginLeft="l">
           Earlier posts
         </Heading>

@@ -8,6 +8,28 @@
     }
 }
 
+.ctaRow {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.revealOnHover {
+    display: inline-flex;
+    align-items: center;
+    /* use a composited transform baseline to avoid layout shifts */
+    transform: translateZ(0) scale(1);
+    transition: transform 180ms var(--ease-in-out), box-shadow 180ms var(--ease-in-out);
+    will-change: transform, box-shadow;
+
+    &:hover {
+        /* subtle scale + shadow on hover — no layout reflow */
+        transform: translateZ(0) scale(1.03);
+        box-shadow: 0 6px 18px rgba(2,6,23,0.08);
+    }
+}
+
 @media (max-width: breakpoints.$s) {
     .textAlign {
         text-align: center;

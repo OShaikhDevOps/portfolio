@@ -27,9 +27,50 @@ import {
   SiNextdotjs,
   SiFigma,
   SiSupabase,
+  // Tooling / Cloud / DevOps
+  SiGooglecloud,
+  SiTerraform,
+  SiPulumi,
+  SiAnsible,
+  SiJenkins,
+  SiGithub,
+  SiGitlab,
+  SiDocker,
+  SiKubernetes,
+  SiArgo,
+  SiFlux,
+  SiHelm,
+  SiPrometheus,
+  SiGrafana,
+  SiElastic,
+  // Security / QA
+  SiSnyk,
+  SiSonarqube,
+  // AI/ML & Python stack
+  SiScikitlearn,
+  SiPython,
+  SiNumpy,
+  SiPandas,
+  SiOpencv,
 } from "react-icons/si";
 
-import { FaDiscord, FaGithub, FaLinkedin, FaX, FaThreads, FaXTwitter, FaFacebook, FaPinterest, FaWhatsapp, FaReddit, FaTelegram, } from "react-icons/fa6";
+import {
+  FaDiscord,
+  FaGithub,
+  FaLinkedin,
+  FaX,
+  FaThreads,
+  FaXTwitter,
+  FaFacebook,
+  FaAws,
+  FaChartLine,
+  FaWater,
+  FaPinterest,
+  FaWhatsapp,
+  FaReddit,
+  FaTelegram,
+  FaShieldHalved,
+} from "react-icons/fa6";
 
 export const iconLibrary: Record<string, IconType> = {
   arrowUpRight: HiArrowUpRight,
@@ -63,6 +104,45 @@ export const iconLibrary: Record<string, IconType> = {
   whatsapp: FaWhatsapp,
   reddit: FaReddit,
   telegram: FaTelegram,
+  // Cloud & DevOps (mapped to content icon strings)
+  aws: FaAws,
+  amazonaws: FaAws, // alias
+  gcp: SiGooglecloud,
+  terraform: SiTerraform,
+  cloudformation: FaAws, // fallback to AWS logo
+  codepipeline: FaAws, // alias for AWS CodePipeline
+  codePipeline: FaAws, // alias (camelCase)
+  jenkins: SiJenkins,
+  githubmark: SiGithub, // alternative github mark if needed
+  gitlab: SiGitlab,
+  ansible: SiAnsible,
+  docker: SiDocker,
+  kubernetes: SiKubernetes,
+  argocd: SiArgo,
+  flux: SiFlux,
+  helm: SiHelm,
+  prometheus: SiPrometheus,
+  grafana: SiGrafana,
+  elk: SiElastic, // Elastic as ELK representative
+  // Security / QA
+  snyk: SiSnyk,
+  sonarqube: SiSonarqube,
+  zap: FaShieldHalved, // OWASP ZAP fallback
+  owaspzap: FaShieldHalved, // alias without dash/space
+  "owasp-zap": FaShieldHalved, // alias kebab-case
+  trivy: SiDocker, // fallback icon (no Simple Icon for Trivy yet)
+  dependencyTrack: SiElastic, // fallback icon
+  "dependency-track": SiElastic, // kebab-case alias
+  shield: FaShieldHalved, // used by content for Dependency-Track
+  // AI/ML & Python stack
+  scikit: SiScikitlearn,
+  python: SiPython,
+  numpy: SiNumpy,
+  pandas: SiPandas,
+  opencv: SiOpencv,
+  matplotlib: FaChartLine,
+  seaborn: FaWater,
+  pulumi: SiPulumi,
 };
 
 export type IconLibrary = typeof iconLibrary;

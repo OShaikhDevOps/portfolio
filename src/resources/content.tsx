@@ -31,15 +31,10 @@ const social: Social = [
     icon: "linkedin",
     link: "https://www.linkedin.com/in/osman-shaikh-456769155/",
   },
-  // {
-  //   name: "Threads",
-  //   icon: "threads",
-  //   link: "https://www.threads.com/@once_ui",
-  // },
   {
     name: "Email",
     icon: "email",
-    link: `mailto:${person.email}`,
+    link: `mailto:${person.email}?subject="From Web Portfolio:"`,
   },
 ];
 
@@ -65,11 +60,47 @@ const home: Home = {
   },
   subline: (
     <>
-      I’m Osman Shaikh, an AI/ML and DevOps Engineer.
+      I'm Osman Shaikh, an AI/ML and DevOps Engineer.
       <br />I design pipelines that scale machine learning into production.
       <br />After hours, I explore new projects in automation and AI.
     </>
   ),
+  clients: {
+    display: true,
+    title: "Clients I've Worked With",
+    clients: [
+      {
+        name: "QPharma Inc",
+        logo: "/images/clients/qpharma-logo.svg",
+        website: "https://qpharmacorp.com",
+        alt: "QPharma Inc Logo"
+      },
+      {
+        name: "Tapestry",
+        logo: "/images/clients/tapestry-logo.svg",
+        website: "https://tapestry.com",
+        alt: "Tapestry Logo"
+      },
+      {
+        name: "Regeneron",
+        logo: "/images/clients/regeneron-logo.svg",
+        website: "https://regeneron.com",
+        alt: "Regeneron Logo"
+      },
+      {
+        name: "Digi Malaysia",
+        logo: "/images/clients/digi-logo.svg",
+        website: "https://digi.com.my",
+        alt: "Digi Malaysia Logo"
+      },
+      {
+        name: "STC (Saudi Telecom)",
+        logo: "/images/clients/stc-logo.svg",
+        website: "https://stc.com.sa",
+        alt: "STC Saudi Telecom Logo"
+      },
+    ],
+  },
 };
 
 const about: About = {
@@ -86,10 +117,11 @@ const about: About = {
   },
   calendar: {
     display: true,
-    link: "https://cal.com",
+    link: "https://calendly.com/usmansdq", // Replace with your Calendly link
   },
   resume: {
     display: true,
+    // Public files are served from the site root. Use an absolute path from `/public`.
     link: "/resume.pdf",
   },
   intro: {
@@ -223,10 +255,12 @@ const about: About = {
     institutions: [
       {
         name: "George Brown College",
+        timeframe: "2026",
         description: <>Postgraduate Certificate Applied A.I. Solutions Development</>,
       },
       {
         name: "Forman Christian College (A Chartered University)",
+        timeframe: "2020",
         description: <>Bachelor of Science - BSc (Hons) in Computer Science</>,
       },
     ],
@@ -404,21 +438,22 @@ const about: About = {
       {
         name: "Rising Star",
         issuer: "Systems Limited",
-        date: "2022",
+        date: "2021",
         description: "Recognized with the Rising Star Award at Systems Limited for demonstrating exceptional growth, adaptability, and impact within a short span of time. This award highlighted my ability to quickly master complex DevOps practices, deliver high-quality automation solutions, and contribute proactively to team success.",
       },
     ],
   },
 };
 
-const blog: Blog = {
-  path: "/blog",
-  label: "Blog",
-  title: "Writing about design and tech...",
-  description: `Read what ${person.name} has been up to recently`,
-  // Create new blog posts by adding a new .mdx file to app/blog/posts
-  // All posts will be listed on the /blog route
-};
+// Blog configuration - soft deleted, can be re-enabled later
+// const blog: Blog = {
+//   path: "/blog",
+//   label: "Blog",
+//   title: "Writing about design and tech...",
+//   description: `Read what ${person.name} has been up to recently`,
+//   // Create new blog posts by adding a new .mdx file to app/blog/posts
+//   // All posts will be listed on the /blog route
+// };
 
 const work: Work = {
   path: "/work",
@@ -429,55 +464,57 @@ const work: Work = {
   // All projects will be listed on the /home and /work routes
 };
 
-const gallery: Gallery = {
-  path: "/gallery",
-  label: "Gallery",
-  title: `Photo gallery – ${person.name}`,
-  description: `A photo collection by ${person.name}`,
-  // Images by https://lorant.one
-  // These are placeholder images, replace with your own
-  images: [
-    {
-      src: "/images/gallery/horizontal-1.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-4.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/horizontal-3.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-1.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/vertical-2.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/horizontal-2.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/horizontal-4.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-3.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-  ],
-};
+// Gallery configuration - soft deleted, can be re-enabled later
+// const gallery: Gallery = {
+//   path: "/gallery",
+//   label: "Gallery",
+//   title: `Photo gallery – ${person.name}`,
+//   description: `A photo collection by ${person.name}`,
+//   // Images by https://lorant.one
+//   // These are placeholder images, replace with your own
+//   images: [
+//     {
+//       src: "/images/gallery/horizontal-1.jpg",
+//       alt: "image",
+//       orientation: "horizontal",
+//     },
+//     {
+//       src: "/images/gallery/vertical-4.jpg",
+//       alt: "image",
+//       orientation: "vertical",
+//     },
+//     {
+//       src: "/images/gallery/horizontal-3.jpg",
+//       alt: "image",
+//       orientation: "horizontal",
+//     },
+//     {
+//       src: "/images/gallery/vertical-1.jpg",
+//       alt: "image",
+//       orientation: "vertical",
+//     },
+//     {
+//       src: "/images/gallery/vertical-2.jpg",
+//       alt: "image",
+//       orientation: "vertical",
+//     },
+//     {
+//       src: "/images/gallery/horizontal-2.jpg",
+//       alt: "image",
+//       orientation: "horizontal",
+//     },
+//     {
+//       src: "/images/gallery/horizontal-4.jpg",
+//       alt: "image",
+//       orientation: "horizontal",
+//     },
+//     {
+//       src: "/images/gallery/vertical-3.jpg",
+//       alt: "image",
+//       orientation: "vertical",
+//     },
+//   ],
+// };
 
-export { person, social, newsletter, home, about, blog, work, gallery };
+export { person, social, newsletter, home, about, work };
+// export { blog, gallery }; // Soft deleted - can be re-enabled later

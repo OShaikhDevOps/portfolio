@@ -81,6 +81,20 @@ export interface BasePageConfig {
 }
 
 /**
+ * Client configuration for the clients section.
+ */
+export type Client = {
+  /** Client name */
+  name: string;
+  /** Client logo image path */
+  logo: string;
+  /** Optional client website URL */
+  website?: string;
+  /** Optional alt text for the logo */
+  alt?: string;
+};
+
+/**
  * Home page configuration.
  */
 export interface Home extends BasePageConfig {
@@ -99,6 +113,15 @@ export interface Home extends BasePageConfig {
   };
   /** The sub text which appears below the headline */
   subline: React.ReactNode;
+  /** Clients section configuration */
+  clients: {
+    /** Whether to display the clients section */
+    display: boolean;
+    /** Title for the clients section */
+    title: string;
+    /** List of clients */
+    clients: Client[];
+  };
 }
 
 /**
@@ -182,6 +205,8 @@ export interface About extends BasePageConfig {
     institutions: Array<{
       /** Institution name */
       name: string;
+      /** Optional timeframe or year range */
+      timeframe?: string;
       /** Description of studies */
       description: React.ReactNode;
     }>;

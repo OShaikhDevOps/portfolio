@@ -12,6 +12,8 @@ import {
   Meta,
   Schema,
   Row,
+  RevealFx,
+  Badge,
 } from "@once-ui-system/core";
 import { baseURL, about, person, social } from "@/resources";
 import TableOfContents from "@/components/about/TableOfContents";
@@ -54,6 +56,11 @@ export default function About() {
       title: about.certifications.title,
       display: about.certifications.display,
       items: about.certifications.certifications.map((cert) => cert.name),
+    },
+    {
+      title: about.awards.title,
+      display: about.awards.display,
+      items: about.awards.awards.map((cert) => cert.name),
     },
   ];
   return (
@@ -124,67 +131,52 @@ export default function About() {
             marginBottom="32"
           >
             <Row
-              fitWidth
-              gap="12"
+              gap="4"
               marginBottom="m"
-              className={styles.blockAlign}
-              wrap
+              className={`${styles.blockAlign} ${styles.ctaRow}`}
+              wrap={false}
+              horizontal="start"
             >
               {about.calendar.display && (
-                <SmartLink
-                  href={about.calendar.link}
-                  style={{ textDecoration: "none", color: "inherit" }}
-                >
-                  <Row
-                    fitWidth
-                    border="brand-alpha-medium"
+                <RevealFx paddingTop="8" translateY="8" delay={0.1}>
+                  <Badge
                     background="brand-alpha-weak"
-                    radius="full"
-                    padding="4"
-                    gap="8"
-                    vertical="center"
-                    style={{
-                      backdropFilter: "blur(var(--static-space-1))",
-                      cursor: "pointer",
-                    }}
+                    paddingX="8"
+                    paddingY="2"
+                    onBackground="neutral-strong"
+                    textVariant="label-default-s"
+                    arrow={false}
+                    href={about.calendar.link}
+                    className={styles.revealOnHover}
                   >
-                    <Icon paddingLeft="12" name="calendar" onBackground="brand-weak" />
-                    <Row paddingX="8">Schedule a call</Row>
-                    <Icon
-                      paddingRight="12"
-                      name="chevronRight"
-                      onBackground="brand-weak"
-                    />
-                  </Row>
-                </SmartLink>
+                    <Row paddingY="1" gap="4" vertical="center">
+                      <Icon name="calendar" onBackground="brand-weak" />
+                      <span>Schedule a call</span>
+                      <Icon name="chevronRight" onBackground="brand-weak" />
+                    </Row>
+                  </Badge>
+                </RevealFx>
               )}
+
               {about.resume.display && (
-                <SmartLink
-                  href={about.resume.link}
-                  style={{ textDecoration: "none", color: "inherit" }}
-                >
-                  <Row
-                    fitWidth
-                    border="brand-alpha-medium"
+                <RevealFx paddingTop="8" translateY="8" delay={0.15}>
+                  <Badge
                     background="brand-alpha-weak"
-                    radius="full"
-                    padding="4"
-                    gap="8"
-                    vertical="center"
-                    style={{
-                      backdropFilter: "blur(var(--static-space-1))",
-                      cursor: "pointer",
-                    }}
+                    paddingX="8"
+                    paddingY="2"
+                    onBackground="neutral-strong"
+                    textVariant="label-default-s"
+                    arrow={false}
+                    href={about.resume.link}
+                    className={styles.revealOnHover}
                   >
-                    <Icon paddingLeft="12" name="document" onBackground="brand-weak" />
-                    <Row paddingX="8">Download Resume</Row>
-                    <Icon
-                      paddingRight="12"
-                      name="chevronRight"
-                      onBackground="brand-weak"
-                    />
-                  </Row>
-                </SmartLink>
+                    <Row paddingY="1" gap="4" vertical="center">
+                      <Icon name="document" onBackground="brand-weak" />
+                      <span>Download Resume</span>
+                      <Icon name="chevronRight" onBackground="brand-weak" />
+                    </Row>
+                  </Badge>
+                </RevealFx>
               )}
             </Row>
             <Heading className={styles.textAlign} variant="display-strong-xl">
@@ -316,10 +308,17 @@ export default function About() {
               </Heading>
               <Column fillWidth gap="l" marginBottom="xl">
                 {about.studies.institutions.map((institution, index) => (
-                  <Column key={`${institution.name}-${index}`} fillWidth gap="4">
-                    <Text id={institution.name} variant="heading-strong-l">
-                      {institution.name}
-                    </Text>
+                  <Column key={`${institution.name}-${index}`} fillWidth>
+                    <Row fillWidth horizontal="between" vertical="end" marginBottom="4">
+                      <Text id={institution.name} variant="heading-strong-l">
+                        {institution.name}
+                      </Text>
+                      {institution.timeframe && (
+                        <Text variant="heading-default-xs" onBackground="neutral-weak">
+                          {institution.timeframe}
+                        </Text>
+                      )}
+                    </Row>
                     <Text variant="heading-default-xs" onBackground="neutral-weak">
                       {institution.description}
                     </Text>
