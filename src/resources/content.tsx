@@ -446,14 +446,13 @@ const about: About = {
 };
 
 // Blog configuration - soft deleted, can be re-enabled later
-// const blog: Blog = {
-//   path: "/blog",
-//   label: "Blog",
-//   title: "Writing about design and tech...",
-//   description: `Read what ${person.name} has been up to recently`,
-//   // Create new blog posts by adding a new .mdx file to app/blog/posts
-//   // All posts will be listed on the /blog route
-// };
+// Blog configuration - enabled as a minimal stub so pages importing `blog` compile.
+const blog: Blog = {
+  path: "/blog",
+  label: "Blog",
+  title: `Blog – ${person.name}`,
+  description: `Writing and posts by ${person.name}`,
+};
 
 const work: Work = {
   path: "/work",
@@ -465,56 +464,13 @@ const work: Work = {
 };
 
 // Gallery configuration - soft deleted, can be re-enabled later
-// const gallery: Gallery = {
-//   path: "/gallery",
-//   label: "Gallery",
-//   title: `Photo gallery – ${person.name}`,
-//   description: `A photo collection by ${person.name}`,
-//   // Images by https://lorant.one
-//   // These are placeholder images, replace with your own
-//   images: [
-//     {
-//       src: "/images/gallery/horizontal-1.jpg",
-//       alt: "image",
-//       orientation: "horizontal",
-//     },
-//     {
-//       src: "/images/gallery/vertical-4.jpg",
-//       alt: "image",
-//       orientation: "vertical",
-//     },
-//     {
-//       src: "/images/gallery/horizontal-3.jpg",
-//       alt: "image",
-//       orientation: "horizontal",
-//     },
-//     {
-//       src: "/images/gallery/vertical-1.jpg",
-//       alt: "image",
-//       orientation: "vertical",
-//     },
-//     {
-//       src: "/images/gallery/vertical-2.jpg",
-//       alt: "image",
-//       orientation: "vertical",
-//     },
-//     {
-//       src: "/images/gallery/horizontal-2.jpg",
-//       alt: "image",
-//       orientation: "horizontal",
-//     },
-//     {
-//       src: "/images/gallery/horizontal-4.jpg",
-//       alt: "image",
-//       orientation: "horizontal",
-//     },
-//     {
-//       src: "/images/gallery/vertical-3.jpg",
-//       alt: "image",
-//       orientation: "vertical",
-//     },
-//   ],
-// };
+// Gallery configuration - enabled as a minimal stub so pages importing `gallery` compile.
+const gallery: Gallery = {
+  path: "/gallery",
+  label: "Gallery",
+  title: `Gallery – ${person.name}`,
+  description: `A photo collection by ${person.name}`,
+  images: [],
+};
 
-export { person, social, newsletter, home, about, work };
-// export { blog, gallery }; // Soft deleted - can be re-enabled later
+export { person, social, newsletter, home, about, work, blog, gallery };
