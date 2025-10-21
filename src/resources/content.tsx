@@ -18,6 +18,52 @@ const newsletter: Newsletter = {
   description: <>My weekly newsletter about DevOps and ML engineering</>,
 };
 
+// Minimal Mailchimp configuration stub so legacy Mailchimp component can import it
+// You can replace these values with your real Mailchimp form action and effects
+const mailchimp = {
+  action: "",
+  effects: {
+    mask: {
+      cursor: false,
+      x: 50,
+      y: 0,
+      radius: 100,
+    },
+    gradient: {
+      display: false,
+      opacity: 0.2,
+      x: 0,
+      y: 0,
+      width: 100,
+      height: 100,
+      tilt: 0,
+      colorStart: "#ffffff",
+      colorEnd: "#000000",
+    },
+    dots: {
+      display: false,
+      opacity: 0.12,
+      size: "s",
+      color: "#000000",
+    },
+    grid: {
+      display: false,
+      opacity: 0.08,
+      color: "#000000",
+      width: "xs",
+      height: "xs",
+    },
+    lines: {
+      display: false,
+      opacity: 0.06,
+      color: "#000000",
+      size: "s",
+      thickness: 1,
+      angle: 45,
+    },
+  },
+};
+
 const social: Social = [
   // Links are automatically displayed.
   // Import new icons in /once-ui/icons.ts
@@ -473,4 +519,4 @@ const gallery: Gallery = {
   images: [],
 };
 
-export { person, social, newsletter, home, about, work, blog, gallery };
+export { person, social, newsletter, mailchimp, home, about, work, blog, gallery };

@@ -3,6 +3,7 @@ export {
   person,
   social,
   newsletter,
+  mailchimp,
   home,
   about,
   work,
