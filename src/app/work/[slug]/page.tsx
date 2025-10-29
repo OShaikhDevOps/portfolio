@@ -117,7 +117,10 @@ export default async function Project({
         </Row>
       </Row>
       {post.metadata.images.length > 0 && (
-        <Media priority aspectRatio="16 / 9" radius="m" alt="image" src={post.metadata.images[0]} />
+        // Use the original image aspect ratio and contain the image so it
+        // scales responsively without being cropped. This preserves the
+        // full image and lets it 'liquidate' across devices.
+        <Media priority aspectRatio="original" objectFit="contain" radius="m" alt="image" src={post.metadata.images[0]} />
       )}
       <Column style={{ margin: "auto" }} as="article" maxWidth="xs">
         <CustomMDX source={post.content} />

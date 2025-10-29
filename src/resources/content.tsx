@@ -102,7 +102,7 @@ const home: Home = {
         </Text>
       </Row>
     ),
-    href: "/work/building-once-ui-a-customizable-design-system",
+    href: "/work/End-to-End-ML-Deployment-Pipeline-with-MLOps-Practices",
   },
   subline: (
     <>
@@ -244,7 +244,7 @@ const about: About = {
         images: [
           // optional: leave the array empty if you don't want to display images
           {
-            src: "/images/projects/project-01/cover-01.jpg",
+            src: "/images/projects/project-01/MultiAZ DR.jpg",
             alt: "Once UI Project",
             width: 16,
             height: 9,
