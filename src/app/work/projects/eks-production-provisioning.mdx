@@ -1,0 +1,72 @@
+---
+title: "Provisioning a Production-Ready EKS Cluster with Terraform & GitOps"
+publishedAt: "2025-11-01"
+summary: "Architected and automated the provisioning of a production-grade Amazon EKS cluster using Terraform, AWS best practices, and GitOps workflows with ArgoCD for continuous delivery and observability."
+images:
+  - "/images/projects/project-01/eks-production.png"
+team:
+  - name: "Osman Shaikh"
+    role: "DevOps & Cloud Engineer"
+    avatar: "/images/my_photo.jpeg"
+    linkedIn: "https://www.linkedin.com/in/osman-shaikh-456769155/"
+link: "https://github.com/OShaikhDevOps/production-eks"
+---
+
+## Overview
+
+This project demonstrates how to **provision a production-ready Amazon EKS (Elastic Kubernetes Service) cluster** with a secure, scalable, and observable architecture built using **Terraform**, **Helm**, and **GitOps (ArgoCD)**.  
+
+The goal was to create an **enterprise-grade Kubernetes platform** capable of running modern containerized workloads with reliability, compliance, and minimal operational overhead — aligning with AWS Well-Architected and CNCF production standards.
+
+---
+
+## Key Features
+
+- **Automated Infrastructure Provisioning:**  
+  Used **Terraform** to provision VPCs, subnets, IAM roles, node groups, and all networking and security resources for EKS across multiple Availability Zones.
+
+- **GitOps-Driven Deployments:**  
+  Integrated **ArgoCD** to manage continuous application delivery, ensuring all manifests and Helm charts are version-controlled and auto-synced from Git.
+
+- **Security by Design:**  
+  Enforced private EKS endpoints, **KMS encryption**, and **IRSA (IAM Roles for Service Accounts)** for granular IAM control. Integrated **OPA/Gatekeeper** for policy enforcement.
+
+- **Observability and Monitoring:**  
+  Implemented **Prometheus**, **Grafana**, and **CloudWatch Agent** for metrics, dashboards, and centralized logging.
+
+- **Ingress and Certificates Management:**  
+  Configured **AWS Load Balancer Controller**, **cert-manager**, and **ExternalDNS** to automate SSL/TLS and DNS updates.
+
+- **Autoscaling and Optimization:**  
+  Enabled **Cluster Autoscaler** with mixed **On-Demand** and **Spot node groups**, optimizing cost while maintaining high availability.
+
+- **Multi-Environment Ready:**  
+  Designed with modular Terraform stacks and parameterized variables for easy deployment to **dev**, **stage**, and **prod** environments.
+
+---
+
+## Technologies Used
+
+- **Infrastructure as Code:** Terraform 1.9+, AWS EKS Blueprints, AWS IAM, VPC  
+- **Cloud Platform:** AWS (EKS, EC2, Route53, ACM, KMS, CloudWatch, Secrets Manager)  
+- **GitOps:** ArgoCD, Helm  
+- **Networking & Security:** ALB, VPC CNI, IRSA, KMS, OPA/Gatekeeper  
+- **Monitoring & Logging:** Prometheus, Grafana, CloudWatch, Loki  
+- **CI/CD:** GitHub Actions / Bitbucket Pipelines  
+- **Cost Optimization:** Spot Instances, Cluster Autoscaler, Kubecost  
+
+---
+
+## Architecture
+
+```mermaid
+graph TD
+  A[Terraform Automation] --> B[VPC & Subnets]
+  B --> C[EKS Control Plane (Private Endpoint)]
+  C --> D[Node Groups (On-Demand + Spot)]
+  D --> E[Applications / Workloads]
+  E --> F[Ingress Controller (ALB + cert-manager + ExternalDNS)]
+  E --> G[ArgoCD GitOps]
+  E --> H[Monitoring Stack (Prometheus + Grafana)]
+  E --> I[CloudWatch Logs + Metrics]
+  C --> J[IRSA + KMS + Secrets Manager]

@@ -1,0 +1,75 @@
+---
+title: "Multi-Repo CI-CD Pipeline for .NET on IIS"
+publishedAt: "2025-10-30"
+summary: "Designed and implemented a production-grade multi-repository CI/CD pipeline using AWS CodePipeline, CodeBuild, and CodeDeploy to automate .NET application deployments on IIS servers in EC2 Auto Scaling Groups with SonarQube and Trivy scanning."
+images:
+  - "/images/projects/project-01/multi-repo.png"
+team:
+  - name: "Osman Shaikh"
+    role: "DevOps & Cloud Engineer"
+    avatar: "/images/my_photo.jpeg"
+    linkedIn: "https://www.linkedin.com/in/osman-shaikh-456769155/"
+link: "https://github.com/OShaikhDevOps/aws-multi-repo-deploy"
+---
+
+## Overview
+
+This project showcases a **multi-repository CI/CD pipeline** that automates the deployment of a **.NET 8 Web API** onto **IIS servers hosted in AWS EC2 Auto Scaling Groups**.  
+
+The pipeline integrates **Bitbucket**, **AWS CodePipeline**, **CodeBuild**, and **CodeDeploy** to enable end-to-end automation — from code build and security scanning to blue/green deployment with automatic rollback.  
+
+The solution uses **Ansible** only for installing .NET Hosting Bundles on EC2 instances, while IIS is pre-baked into the AMI used for Auto Scaling, ensuring fast, consistent provisioning.
+
+<Media src="/images/projects/project-01/cicd-flow.png" alt="CI/CD architecture diagram" aspectRatio="original" objectFit="contain" />
+---
+
+## Key Features
+
+- **Multi-Repo Source Integration:**  
+  CodePipeline aggregates multiple Bitbucket repositories (application, dependencies, and pipeline configuration) for unified build orchestration.
+
+- **Automated Build and Testing:**  
+  CodeBuild compiles, runs unit tests, and generates artifacts ready for deployment.
+
+- **Static & Vulnerability Scanning:**  
+  Integrated **SonarQube** for code quality checks and **Trivy** for dependency and secret scanning.
+
+- **Blue/Green Deployments on IIS:**  
+  CodeDeploy performs automated blue/green rollouts across IIS servers in EC2 Auto Scaling Groups with rollback triggers on failed health checks.
+
+- **Ansible for Lightweight Configuration:**  
+  Ansible playbooks install only **.NET 8 Hosting Bundles**, keeping infrastructure immutable and aligned with AMI-based deployment best practices.
+
+- **Scalable and Resilient Architecture:**  
+  Deployed behind an **Application Load Balancer (ALB)** with health checks, auto-healing, and automatic rollback policies.
+
+---
+
+## Technologies Used
+
+- **CI/CD:** AWS CodePipeline, CodeBuild, CodeDeploy  
+- **Source Control:** Bitbucket (multi-repo via CodeStar Connection)  
+- **Configuration Management:** Ansible (idempotent bundle installation)  
+- **Runtime:** .NET 8 Web API hosted on IIS  
+- **Security & Scanning:** SonarQube, Trivy  
+- **Infrastructure:** AWS EC2, Auto Scaling Groups, ALB, IAM, S3  
+- **Monitoring & Rollback:** CloudWatch Alarms, Health Checks  
+
+---
+
+## Architecture
+
+```mermaid
+flowchart LR
+  A1[Bitbucket: App & Dependency Repos] --> P1[CodePipeline]
+  A2[Bitbucket: Pipeline Repo] --> P1
+  P1 --> B[CodeBuild: Build, Test, Sonar, Trivy]
+  B --> C[CodeDeploy: Blue/Green Deploy]
+  C --> D[IIS on EC2 (Auto Scaling Group)]
+  D --> ALB[Application Load Balancer]
+  ALB --> U[Users]
+
+  subgraph Infra
+    D
+    ALB
+  end
