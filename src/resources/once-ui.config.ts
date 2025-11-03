@@ -19,7 +19,7 @@ const routes: RoutesConfig = {
   "/": true,
   "/about": true,
   "/work": true,
-  // "/blog": true, // Soft deleted - can be re-enabled later
+  "/blog": true,
   // "/gallery": true, // Soft deleted - can be re-enabled later
 };
 

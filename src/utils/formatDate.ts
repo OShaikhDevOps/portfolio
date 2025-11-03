@@ -1,11 +1,23 @@
-export function formatDate(date: string, includeRelative = false) {
+export function formatDate(date?: string, includeRelative = false) {
   const currentDate = new Date();
+
+  // Defensive: handle missing or invalid date values coming from MDX frontmatter
+  if (!date) {
+    return "Unknown date";
+  }
+
+  if (typeof date !== "string") {
+    return "Unknown date";
+  }
 
   if (!date.includes("T")) {
     date = `${date}T00:00:00`;
   }
 
   const targetDate = new Date(date);
+  if (isNaN(targetDate.getTime())) {
+    return "Unknown date";
+  }
   const yearsAgo = currentDate.getFullYear() - targetDate.getFullYear();
   const monthsAgo = currentDate.getMonth() - targetDate.getMonth();
   const daysAgo = currentDate.getDate() - targetDate.getDate();

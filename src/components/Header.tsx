@@ -129,14 +129,14 @@ export const Header = () => {
                   </Row>
                 </>
               )}
-              {/* Blog navigation - soft deleted, can be re-enabled later */}
-              {/* {routes["/blog"] && (
+              {/* Blog navigation */}
+              {routes["/blog"] && (
                 <>
                   <Row s={{ hide: true }}>
                     <ToggleButton
                       prefixIcon="book"
                       href="/blog"
-                      label={blog.label}
+                      label={/* blog.label */ "Blog"}
                       selected={pathname.startsWith("/blog")}
                     />
                   </Row>
@@ -148,7 +148,7 @@ export const Header = () => {
                     />
                   </Row>
                 </>
-              )} */}
+              )}
               {/* Gallery navigation - soft deleted, can be re-enabled later */}
               {/* {routes["/gallery"] && (
                 <>
