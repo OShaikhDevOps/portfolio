@@ -5,7 +5,7 @@ const person: Person = {
   firstName: "Osman",
   lastName: "Shaikh",
   name: `Osman Shaikh`,
-  role: "AI/ML & DevOps Engineer",
+  role: "DevOps & Cloud Engineer",
   avatar: "/images/my_photo.jpeg",
   email: "usman_s@msn.com",
   location: "America/Toronto", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
@@ -90,7 +90,7 @@ const home: Home = {
   label: "Home",
   title: `${person.name}'s Portfolio`,
   description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Where AI Meets DevOps</>,
+  headline: <>Where Automation Meets Scalable Infrastructure</>,
   featured: {
     display: true,
     title: (
@@ -106,9 +106,10 @@ const home: Home = {
   },
   subline: (
     <>
-      I'm Osman Shaikh, an AI/ML and DevOps Engineer.
-      <br />I design pipelines that scale machine learning into production.
-      <br />After hours, I explore new projects in automation and AI.
+      I’m Osman Shaikh — a DevOps & Cloud Engineer based in Toronto.
+      <br />I build production-grade cloud platforms using Kubernetes, Terraform, and CI/CD automation.
+      <br />My work focuses on reliability, security, cost efficiency, and repeatable delivery across AWS and Azure.
+      <br />After hours, I explore automation, GitOps, and cloud-native innovation.
     </>
   ),
   clients: {
@@ -175,10 +176,9 @@ const about: About = {
     title: "Introduction",
     description: (
       <>
-      I’m Osman Shaikh, an AI/ML and DevOps Engineer based in Toronto. 
-      I build scalable machine learning pipelines and cloud-native systems, 
-      with a strong focus on automation, CI/CD, and security. 
-      My work bridges AI innovation with reliable infrastructure and application delivery.
+      I’m Osman Shaikh, a DevOps & Cloud Engineer based in Toronto. 
+      I design scalable infrastructure and automated delivery systems using AWS, Kubernetes, Terraform, and CI/CD. 
+      My focus is reliability, cost efficiency, security, and helping teams ship software faster and more safely.
       </>
     ),
   },
@@ -190,55 +190,22 @@ const about: About = {
         company: "TechSolutions — Contract for QPharma Inc",
         timeframe: "2025 - Present",
         role: "DevOps Engineer",
-        description: "Supporting QPharma Inc. as a DevOps and Cloud Engineer, with responsibility for designing, automating, and securing AWS-based infrastructure. My focus is on delivering scalable CI/CD pipelines, resilient cloud architectures, and operational automation to ensure reliability and business continuity.",
+        description: "Supporting QPharma Inc. as a DevOps and Cloud Engineer, with responsibility for designing, automating, and securing AWS-based infrastructure and delivery pipelines.",
         achievements: [
           <>
-            CI/CD Engineering: Designed and maintained pipelines with Jenkins, 
-            AWS CodePipeline, and GitHub Actions to streamline builds, testing, 
-            and deployments for .NET, Angular, Node.js, and Python applications.
+            Introduced GitOps with ArgoCD to reduce configuration drift and eliminate manual deployments.
           </>,
           <>
-            Cloud Infrastructure: Built and managed AWS infrastructure 
-            (VPC, EC2, S3, Lambda, API Gateway, Route53, IAM, Load Balancers,
-            Security Groups, VPC Peering, and cross-account networking)
-            using Terraform and CloudFormation, ensuring high availability,
-            scalability, and cost optimization (Reserved Instances, Auto Scaling,
-            Savings Plans).
+            Automated CI/CD using GitHub Actions/Jenkins with integrated security scanning (Snyk, SonarQube, OWASP ZAP, Trivy).
           </>,
           <>
-          Infrastructure & Configuration as Code: Automated provisioning and configuration
-          with Terraform and Ansible, enabling repeatable, consistent environment setups
-          across DEV/SIT/PROD.
+            Containerized and optimized workloads on ECS/EKS, reducing AWS compute cost by ~30%.
           </>,
           <>
-          SecOps / DevSecOps: Integrated security into CI/CD workflows with 
-          Trivy, Snyk, SonarQube, OWASP ZAP, and Dependency-Track, enabling 
-          early vulnerability detection and compliance reporting.
+            Automated infrastructure provisioning with Terraform and Ansible, cutting manual configuration work by ~60%.
           </>,
           <>
-          Automation & Lambda: Developed AWS Lambda functions for automation,
-          event-driven workflows, and data processing tasks, improving efficiency
-          and reducing manual overhead.
-          </>,
-          <>
-          Kubernetes & Containerization: Deployed and optimized workloads on
-          Kubernetes (EKS), leveraging container orchestration for scalable 
-          microservices and efficient resource utilization.
-          </>,
-          <>
-          Resilience & Reliability: Implemented chaos engineering experiments
-          and multi-AZ disaster recovery strategies to validate resilience and
-           ensure business continuity.
-          </>,
-          <>
-          Identity & Access Management: Configured Microsoft Active Directory
-          and AWS VPN to support secure hybrid cloud access, with least-privilege
-           IAM policies for compliance.
-          </>,
-          <>
-          Collaboration & Leadership: Partnered with cross-functional teams to 
-          deliver secure, scalable solutions by applying DevOps and 
-          MLOps best practices end to end.
+            Modernized monitoring using CloudWatch, Prometheus, and Grafana to reduce MTTR and improve release confidence.
           </>,
         ],
         images: [
@@ -255,42 +222,27 @@ const about: About = {
         company: "Systems Limited/Visionet — Major Clients: Tapestry, Regeneron, Digi Malaysia, STC (Saudi Telecom)",
         timeframe: "2021 - 2025",
         role: "Principal Cloud Consultant / Lead DevOps Engineer",
-        description: "During my tenure at Systems Limited, I advanced through multiple roles (Associate → Junior → Consultant → Senior → Principal), leading cloud and DevOps initiatives for global enterprise clients.",
+        description: "During my tenure at Systems Limited / Visionet, I advanced from Associate to Principal while leading cloud and DevOps initiatives for global enterprise clients including Tapestry, Regeneron, Digi Malaysia, and STC.",
         achievements: [
           <>
-            Cloud Engineering: Designed and managed large-scale AWS and GCP infrastructures, implementing 
-            high-availability, cost-optimized solutions using VPC, EC2, S3, Lambda, API Gateway, Route53, IAM, 
-            Load Balancers, VPC Peering, and cross-account networking. Leveraged Terraform, Pulumi, and 
-            CloudFormation for Infrastructure as Code.
+            Designed CI/CD pipelines that reduced release cycles from weeks to days across multiple product teams.
           </>,
           <>
-            CI/CD & Automation: Built and optimized CI/CD pipelines using Jenkins, GitHub Actions, GitLab CI/CD, 
-            and AWS CodePipeline, enabling faster, more reliable software delivery across .NET, Angular, Node.js, 
-            and Python applications.
+            Migrated legacy monolithic applications to Docker- and Kubernetes-based microservices, cutting infrastructure cost by ~20% and improving scalability.
           </>,
           <>
-            Application Modernization: Migrated legacy monolithic applications to microservices with Kubernetes 
-            and Docker, reducing infrastructure costs by 20% while improving scalability and reliability.
+            Implemented GitOps practices with ArgoCD and FluxCD for version-controlled, reliable deployments.
           </>,
           <>
-            GitOps Practices: Implemented declarative deployment workflows using ArgoCD and FluxCD, ensuring 
-            version-controlled, consistent infrastructure and application rollouts.
+            Embedded DevSecOps tooling (Snyk, SonarQube, OWASP ZAP, Trivy, Dependency-Track) into pipelines to reduce critical vulnerabilities before production.
           </>,
           <>
-            Security & Compliance (DevSecOps): Integrated tools like Snyk, SonarQube, OWASP ZAP, Trivy, and 
-            Dependency-Track into CI/CD workflows, ensuring secure code delivery and continuous vulnerability 
-            management (SCA, SAST, DAST).
+            Automated cloud infrastructure on AWS and GCP with Terraform, Pulumi, and CloudFormation.
           </>,
           <>
-            Monitoring & Observability: Automated monitoring with Prometheus, Grafana, and ELK Stack, proactively 
-            identifying performance bottlenecks and improving system reliability.
+            Mentored and led teams of up to 20 DevOps engineers delivering secure, scalable platforms for global clients.
           </>,
-          <>
-            Leadership & Collaboration: Directed and mentored teams of up to 20 DevOps engineers, fostering 
-            cross-functional collaboration via JIRA, Confluence, and Slack, while ensuring timely, secure, and 
-            scalable delivery of solutions.
-          </>        
-          ],
+        ],
         images: [],
       },
     ],
@@ -402,12 +354,10 @@ const about: About = {
         images: [],
       },
       {
-        title: "AI / ML",
+        title: "AI / ML (learning & interests)",
         description: (
           <>
-            Building and training machine learning models using Scikit-learn for classification, 
-            regression, and clustering. Experienced in visualization with Matplotlib and Seaborn, 
-            and applying image processing techniques with OpenCV for computer vision tasks.
+            Experimenting with scikit-learn, visualization (Matplotlib/Seaborn), and OpenCV for computer vision as side projects, with the goal of applying ML in observability and automation use-cases.
           </>
         ),
         tags: [
@@ -427,6 +377,14 @@ const about: About = {
     display: true,
     title: "Certifications",
     certifications: [
+      {
+        name: "Microsoft Certified: Azure Administrator Associate",
+        issuer: "Microsoft",
+        date: "2025",
+        credentialId: "E2AF779598F97341",
+        credentialUrl: "https://learn.microsoft.com/en-us/users/osmanshaikh-5514/credentials/e2af779598f97341",
+        description: "Demonstrates a high-level understanding of Azure administration, including identities and governance, storage, compute, virtual networking, and resource monitoring.",
+      },
       {
         name: "AWS Certified AI Practitioner Early Adopter",
         issuer: "Amazon Web Services (AWS)",
