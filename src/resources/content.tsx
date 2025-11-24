@@ -169,7 +169,7 @@ const about: About = {
   resume: {
     display: true,
     // Public files are served from the site root. Use an absolute path from `/public`.
-    link: "/resume.pdf",
+    link: "/osman_resume.pdf",
   },
   intro: {
     display: true,
