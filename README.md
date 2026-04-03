@@ -4,6 +4,7 @@ Magic Portfolio is a simple, clean, beginner-friendly portfolio template. It sup
 
 View the demo [here](https://demo.magic-portfolio.com).
 
+
 ## Getting started
 
 **1. Clone the repository**
