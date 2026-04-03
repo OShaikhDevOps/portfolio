@@ -3,20 +3,11 @@ name: Deploy Next.js to S3
 on:
   push:
     branches: [ "main" ]
-
-permissions:
-  id-token: write
-  contents: read
-
-env:
-  AWS_REGION: ca-central-1
-  S3_BUCKET: shaikh-portfolio-site
-  CLOUDFRONT_DISTRIBUTION_ID: E13Q3LKV517H9V
-
+  
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -31,9 +22,7 @@ jobs:
         run: npm ci
 
       - name: Build (static export)
-        run: |
-          npm run build
-          # test -d out || (echo "❌ Next.js export folder ./out not found" && exit 1)
+        run: npm run build
 
       - name: Deploy on Heroku
         uses: 5hojib/heroku-deploy-action@v1.2.10
