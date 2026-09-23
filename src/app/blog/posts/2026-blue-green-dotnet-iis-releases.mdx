@@ -1,0 +1,37 @@
+---
+title: "Blue-Green Releases for .NET on IIS: What Makes Rollback Work?"
+summary: "Immutable artifacts, replacement environments, application checks, and compatible data changes are the foundations of a recoverable release."
+publishedAt: "2026-09-23"
+tag: "CI/CD & AWS"
+image: "/images/projects/multi-repo-ci-cd-pipeline-for-dotnet-on-iis/cover.webp"
+---
+
+Blue-green delivery creates a replacement environment before switching traffic. That is a useful foundation, but keeping the old servers alive does not guarantee that returning to them will work.
+
+My [multi-repository .NET delivery project](/work/Multi-Repo-CI-CD-Pipeline-for-.NET-on-IIS) combines AWS delivery services with IIS on EC2. Here are the release decisions I would make explicit when implementing this pattern.
+
+## Keep the artifact and the machine baseline separate
+
+Build and test the application once, then record its revision and checksum. Track the server image and required runtime alongside it. This makes application changes distinguishable from changes to IIS, the hosting bundle, or operating system configuration.
+
+A replacement server should be reproducible without depending on an engineer's interactive setup. Validate the machine baseline independently before making it the default for a release.
+
+## Test before and after the traffic switch
+
+Before switching, verify configuration, application startup, authentication, and a representative API operation. After switching, watch application errors and latency as well as load balancer health.
+
+CodeDeploy deployment behavior depends on the compute platform. EC2/on-premises configurations govern healthy host counts; ECS and Lambda support their own traffic-shifting configurations. Do not assume a canary setting from an ECS example applies to an IIS deployment. See the [CodeDeploy deployment configuration guide](https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations.html).
+
+For a multi-repository release, keep an explicit manifest of component versions. “Deploy the latest successful build from each repository” can create a combination that was never tested together.
+
+## Treat rollback as a new operation
+
+CodeDeploy can initiate rollback after a failed deployment or configured monitoring threshold. It redeploys a previous application revision as a new deployment, with a new deployment ID. The [rollback documentation](https://docs.aws.amazon.com/codedeploy/latest/userguide/deployments-rollback-and-redeploy.html) also explains limits around files created by deployment scripts.
+
+My rollback rehearsal would therefore include script side effects and application configuration, not only package selection. Confirm the old application can still start, read its settings, and communicate with dependencies.
+
+## Preserve database compatibility
+
+Prefer a staged schema change: add compatible structures, release code that can work across the transition, migrate data, and remove obsolete structures later. The exact sequence depends on the database and application, but the compatibility window should be an explicit release requirement.
+
+Before calling a rollout recoverable, answer one concrete question: if the new release accepts writes for ten minutes, can the previous version safely resume service? That question exposes risks a successful deployment status cannot show.

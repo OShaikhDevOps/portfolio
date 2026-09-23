@@ -1,0 +1,37 @@
+---
+title: "Making EKS Releases Reliable with GitOps and Health Checks"
+summary: "A practical approach to separating build and deployment, controlling drift, and checking whether Kubernetes workloads can actually serve traffic."
+publishedAt: "2026-09-23"
+tag: "Kubernetes & GitOps"
+image: "/images/projects/eks-production-provisioning/cover.webp"
+---
+
+A Kubernetes deployment can be synchronized with Git and still fail its users. Configuration consistency and application health answer different questions, so a release workflow needs evidence of both.
+
+The architecture in my [EKS platform project](/work/eks-production-provisioning) brings Terraform, GitOps, and observability together. Here is a practical way to reason about those boundaries when designing a similar platform.
+
+## Build an artifact once
+
+Let CI test the application and publish an immutable image. Record the commit and image digest together. Promotion should update the desired deployment reference rather than rebuild the same source separately for each environment.
+
+That gives an incident investigation a precise question: which artifact is running, and which configuration selected it? A mutable image tag makes that question unnecessarily difficult.
+
+## Make reconciliation an explicit policy
+
+Argo CD can synchronize desired state automatically. Pruning deleted resources and correcting live drift are separate options; enabling automated sync alone does not imply both. The [Argo CD automated sync guide](https://argo-cd.readthedocs.io/en/stable/user-guide/auto_sync/) describes these controls.
+
+My preferred rollout is to begin with a small application and deliberately test three events: a configuration commit, a manual live change, and a resource removed from Git. Observe what happens before applying the same policy to critical workloads.
+
+Document emergency access as well. An operator needs to know whether a temporary live fix will be reconciled away, and how to capture the permanent correction in source control.
+
+## Check readiness before sending traffic
+
+Startup, readiness, and liveness probes serve different purposes. Startup probes allow initialization time, readiness controls whether a container is ready to accept traffic, and liveness can trigger a restart. AWS describes these distinctions in its [EKS application availability guidance](https://docs.aws.amazon.com/eks/latest/best-practices/application.html).
+
+A practical failure exercise is to slow application startup while leaving the process alive. The rollout should wait for readiness instead of routing traffic immediately or restarting an application that is still initializing. Test shutdown too: terminating a pod should give in-flight work a chance to finish.
+
+## Write down the release evidence
+
+For each release, I would record the artifact digest, configuration revision, rollout result, and a short window of application error and latency signals. Include a real user-path check, such as reading a record through the API, rather than relying entirely on a health endpoint.
+
+Finally, rehearse recovery with a compatible previous artifact. Reverting Git does not automatically reverse a database migration. Reliability comes from checking the whole change, including the state that lives outside Kubernetes.

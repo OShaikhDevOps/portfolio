@@ -1,0 +1,37 @@
+---
+title: "AWS Disaster Recovery: Test the Recovery Path, Not Just the Backup"
+summary: "Turn recovery objectives into a practical exercise covering data restoration, infrastructure, traffic routing, and return to normal operations."
+publishedAt: "2026-09-23"
+tag: "Cloud Reliability"
+image: "/images/projects/aws-disaster-recovery-automation/cover.webp"
+---
+
+A completed backup job answers whether a copy was created. It does not answer whether the application can serve customers from that copy during an incident.
+
+In the [AWS disaster recovery project](/work/aws-disaster-recovery-automation), infrastructure automation and failover are part of the same problem. A useful recovery plan must include the application, its data, and the people making the decision to switch.
+
+## Start with the failure scenario
+
+An instance failure, an Availability Zone disruption, a Region outage, and accidental data deletion require different responses. Multi-AZ placement improves availability, but does not by itself provide recovery from every regional or data-integrity event.
+
+Agree on acceptable data loss and service recovery time for a specific workload. AWS describes recovery strategies ranging from backup and restore through pilot light, warm standby, and multi-site operation in its [disaster recovery guidance](https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html). Choose a strategy against the workload's objectives and operating cost, rather than assuming the most elaborate design is always necessary.
+
+## Inventory the dependencies that restoration needs
+
+My exercise checklist would include encryption keys, IAM permissions, secrets, certificates, network paths, quotas, and external integrations. Restored compute cannot help if it cannot decrypt the data or reach an upstream service.
+
+Keep recovery infrastructure definitions and runbooks accessible during the failure being simulated. Avoid a plan that requires the unavailable environment to build its own replacement.
+
+## Run an isolated restore exercise
+
+Restore into a controlled environment and verify application behavior with synthetic data or approved test records. Check record consistency and the last recoverable transaction, then measure the time until the service is usable.
+
+Record when the incident was detected, when recovery was authorized, when data became available, and when user-path validation passed. These timestamps reveal whether the delay came from technology, access, or an unclear decision.
+
+Do not interpret “the instance started” as recovery complete. A successful exercise should include a meaningful application operation and evidence that monitoring works in the recovery environment.
+
+## Plan the return journey
+
+Failback deserves its own procedure. Decide which environment owns writes, how changes are reconciled, and when traffic can move back. A rushed return can undo an otherwise successful recovery.
+
+After the exercise, turn every manual discovery into an owned improvement. Repeat the test after significant architectural changes. The most useful recovery metric is a demonstrated result under a defined scenario, with a runbook another engineer can follow.

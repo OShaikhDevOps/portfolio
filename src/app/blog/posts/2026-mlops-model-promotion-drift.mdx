@@ -1,0 +1,39 @@
+---
+title: "MLOps Beyond Training: Model Promotion and Drift Monitoring"
+summary: "Connect model lineage, evaluation, deployment, and production feedback so a successful training run becomes a reviewable release."
+publishedAt: "2026-09-23"
+tag: "MLOps"
+image: "/images/projects/mlops-predictive-maintenance-platform/cover.webp"
+---
+
+A training run can produce a strong evaluation score while leaving unanswered questions about production: which data was used, whether the preprocessing matches serving, and how a bad release will be detected.
+
+The [predictive maintenance platform](/work/mlops-predictive-maintenance-platform) and [demand forecasting project](/work/demand-forecasting-mlops-platform) explore this boundary between machine learning and operations. A useful MLOps workflow makes a model release traceable from data preparation to production behavior.
+
+## Define the release unit
+
+Treat the model, preprocessing logic, input schema, and dependency environment as one compatible release. Record the training data reference, code revision, evaluation results, and artifact identity together.
+
+For time-dependent data, I would explicitly inspect how training and evaluation periods were separated. A score inflated by future information is not repaired by a better deployment pipeline.
+
+Keep a simple baseline in the evaluation report. A more complex model should justify its additional operating cost and failure modes against something the team understands.
+
+## Make promotion reviewable
+
+MLflow's model registry supports model versions, tags, and aliases. An alias can identify a selected version without making a hard-coded version number part of every consumer. See the [MLflow registry workflow documentation](https://mlflow.org/docs/latest/ml/model-registry/workflow/).
+
+For a controlled release, record the exact version resolved at deployment time. A mutable alias is convenient, but an incident investigation still needs to identify precisely which artifact served a prediction.
+
+My promotion checklist would include schema compatibility, performance on important data slices, inference latency under representative load, and a documented fallback. Keep approval evidence with the release record so that a later retraining run does not obscure the original decision.
+
+## Separate drift from measured performance
+
+Input distribution changes are useful investigation signals. They do not automatically prove that model quality has fallen. Conversely, a stable input distribution does not guarantee accurate predictions.
+
+For forecasting, compare predictions with actual outcomes once they arrive. For predictive maintenance, consider label delays and the cost of missed events versus unnecessary interventions. Evaluate the behavior the application actually needs, not just a convenient aggregate score.
+
+## Close the loop carefully
+
+I would route a drift alert to an investigation workflow before triggering automatic promotion. Check for broken ingestion, changed units, missing features, and genuine population changes. Retraining on corrupted data can amplify the original problem.
+
+Test recovery with a previous compatible model and preprocessing bundle. Keep a record of what triggered retraining, which evaluation justified promotion, and how production results changed afterward. That makes the model lifecycle an engineering process the team can inspect and improve.

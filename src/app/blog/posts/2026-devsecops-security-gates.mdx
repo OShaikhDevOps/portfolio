@@ -1,0 +1,35 @@
+---
+title: "Designing DevSecOps Gates That Developers Can Act On"
+summary: "Put security checks at useful points in the pipeline, make failures understandable, and give exceptions an owner and an expiry date."
+publishedAt: "2026-09-23"
+tag: "DevSecOps"
+image: "/images/projects/devsecops-pipeline-with-automated-security-scanning/cover.webp"
+---
+
+A security scanner adds value when its result changes an engineering decision. A long report attached to a successful pipeline can be easy to ignore; an unexplained failure can push teams toward bypassing the check.
+
+My [DevSecOps pipeline project](/work/DevSecOps-Pipeline-with-Automated-Security-Scanning) focuses on embedding scanning into delivery. The useful design question is where a finding should block progress and what the developer needs to fix it.
+
+## Match the check to the artifact
+
+Source analysis belongs near code changes. Dependency checks need the resolved dependency set. Container scanning should inspect the actual image that will be promoted. Dynamic testing needs a running application and a carefully scoped test environment.
+
+I would keep these results distinct in CI. A dependency vulnerability and a failing authenticated application scan have different owners and different remediation paths. Combining them into a single unexplained red status loses that context.
+
+## Define a small, explicit blocking policy
+
+Start with a written policy that explains which findings block a release, how severity is interpreted, and how exceptions work. Separate a failed scan from a completed scan that found no issues.
+
+Trivy supports filtering results by severity and other criteria. Its filtering options change what appears in a report, so the policy must explain what was excluded. In particular, hiding vulnerabilities without an available fix is a reporting choice, not evidence that the risk disappeared. See the [Trivy filtering documentation](https://trivy.dev/docs/latest/configuration/filtering/).
+
+For an existing application with a backlog, I would inventory the baseline before introducing a new gate. Give new findings clear handling while assigning owners to existing issues; otherwise the first rollout becomes a debate about every historical dependency at once.
+
+## Make each failure actionable
+
+A useful CI result identifies the affected component, the evidence, the policy rule, and the next step. Keep the full report as a restricted artifact, but summarize the specific reason the release stopped.
+
+An exception should include an owner, justification, expiry date, and compensating control. Review expired exceptions automatically. A permanent ignore entry with no explanation turns a temporary decision into invisible policy.
+
+## Measure whether the gate helps
+
+Track time to resolution, recurring findings, expired exceptions, and scanner failures. Review false positives with the application team. The goal is a delivery process where security decisions are repeatable and understandable, and where the tested artifact is the one that reaches production.

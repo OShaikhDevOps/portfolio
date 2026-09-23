@@ -1,0 +1,39 @@
+---
+title: "Terraform State: Designing Clear Boundaries Between Environments"
+summary: "How I approach state isolation, locking, reviewed plans, and recovery when infrastructure automation grows beyond a single environment."
+publishedAt: "2026-09-23"
+tag: "Infrastructure as Code"
+image: "/images/projects/azure-landing-zone-governance/cover.webp"
+---
+
+Reusable infrastructure code is valuable, but reuse should not blur ownership. A shared network, a production database, and an experimental application have different lifecycles. Putting them into one state file makes unrelated changes harder to review and recover.
+
+My starting point is to draw the environment and ownership boundaries before choosing a directory layout. The question is simple: which resources should be planned, changed, and recovered together?
+
+## Separate state by change boundary
+
+Use explicit state locations for independently managed environments and components. Make the target account, Region, and environment visible in the pipeline output before a plan is approved.
+
+For example, a network foundation can expose a small set of outputs consumed by application infrastructure. The application should not need permission to rewrite the network's state. This boundary also gives teams a clearer place to coordinate changes to shared resources.
+
+## Enable locking and protect the backend
+
+Terraform's S3 backend supports opt-in lock files through `use_lockfile`. HashiCorp recommends bucket versioning for state recovery, and its documentation marks DynamoDB-based locking as deprecated. Check compatibility with the Terraform versions used by every runner before changing a shared backend. See the [S3 backend reference](https://developer.hashicorp.com/terraform/language/backend/s3).
+
+Locking prevents concurrent writers from colliding. It does not prevent an incorrect plan from deleting the wrong resource. Access control, review, and recovery still need their own design.
+
+Treat state and saved plans as sensitive artifacts. Limit access, define retention, and avoid exposing them in public CI logs or broadly accessible build downloads.
+
+## Apply the plan that was reviewed
+
+A useful workflow creates a plan, saves it as a restricted artifact, and requires approval before applying that artifact. If the code or target configuration changes, generate a fresh plan and review it again.
+
+My review checklist focuses on destructive replacements, unexpected account or Region changes, and changes to shared outputs. A large plan deserves investigation even when most lines look familiar. Routine noise makes the one important change easier to miss.
+
+## Rehearse state recovery
+
+Write down who can recover a previous state version and how they verify it against real infrastructure. Restoring a state file does not restore a deleted database or undo changes to a running service.
+
+A useful exercise starts with a disposable environment: interrupt a run, inspect the lock, reconcile the state, and produce a clean plan. Record the decisions that required operator judgment. Those steps are the part of infrastructure automation that a directory template cannot supply.
+
+For the broader configuration reuse discussion, see my [Terragrunt post](/blog/2025-terragrunt-efficiency-metrics).

@@ -1,0 +1,51 @@
+---
+title: "Building an Automated AI PR Review Agent with Amazon Bedrock and Python"
+summary: "My recent AI review project combines Bedrock, Python, and Lambda. Here is how I think about review context, reliable execution, and AWS monitoring."
+publishedAt: "2026-09-23"
+tag: "AI & Serverless"
+image: "/images/projects/devsecops-pipeline-with-automated-security-scanning/cover.webp"
+---
+
+I recently created an automated AI pull request review agent using **Amazon Bedrock, Python, and AWS Lambda**. The problem is familiar to anyone working on delivery pipelines: a small change can hide an important failure path, and reviewers have limited time to inspect every detail.
+
+This post introduces the project and a reference design for operating this kind of agent. The workflow and monitoring choices below are implementation guidance, rather than a claim that every component is already deployed in my project.
+
+## Give the reviewer a bounded job
+
+An effective review request should explain what changed, why it changed, and which files matter. Sending an entire repository on every invocation makes it harder to understand what the model actually reviewed.
+
+I would start with the diff, relevant surrounding functions, and the pull request description. Exclude generated files and lockfile noise where appropriate, and explicitly report any omitted files. A partial review should never appear to cover the whole change.
+
+The output contract should ask for a file, an applicable line range, a concrete failure scenario, and a suggested correction. A comment such as “improve error handling” gives a developer little to act on. A finding that explains how an empty response reaches an unchecked dictionary lookup is much more useful.
+
+## Separate event handling from review generation
+
+A practical reference workflow has five steps:
+
+1. Authenticate the incoming repository event and confirm that the repository is allowed.
+2. Record the repository, pull request number, and head commit as the review identity.
+3. Collect a bounded set of changes and request a review from Bedrock.
+4. Validate the response, including file paths and line references.
+5. Check that the head commit is still current before publishing the review.
+
+Bedrock's Converse API provides a common request format for supported models. Model availability and supported inference parameters still need to be checked for the chosen model and Region. See the [Bedrock Converse documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/conversation-inference.html).
+
+For Lambda, duplicate delivery is an operational concern. Store review state durably and make publication idempotent; a retry must not produce a second wall of comments. Configure timeouts and bounded retries around external calls. These choices follow [AWS Lambda's guidance on idempotency and downstream capacity](https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html).
+
+## Treat repository text as input, not authority
+
+Comments, markdown, and even code can contain instructions aimed at the model. The review prompt should treat all repository content as untrusted material to analyze. Prompt instructions alone are not a security boundary: the agent should have narrowly scoped credentials and no ability to execute arbitrary repository content or merge changes.
+
+Keep human approval and deterministic CI checks in place. AI review is useful for proposing findings; a quiet response does not prove that a change is safe. Avoid sending credentials or sensitive data to inference, and avoid logging raw diffs by default.
+
+## Make AWS alarms explain failed outcomes
+
+CloudWatch is a suitable monitoring layer for this reference design. I would track function errors, throttling, duration, model invocation failures, and the age of unfinished reviews. Also record an application-level completion metric: a Lambda invocation can finish successfully even when the agent intentionally declines to publish a malformed response.
+
+Choose alarm thresholds from expected traffic and review latency. Sparse event-driven workloads need an explicit missing-data policy. Route notifications to an owner and test delivery by deliberately triggering a controlled failure. [CloudWatch's alarm documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Alarms.html) explains evaluation periods, missing data, and alarm actions.
+
+## Evaluate the comments, not just the model call
+
+My evaluation plan would include a known bug, a harmless refactor, a large diff, a repeated event, a model timeout, and a new commit arriving during review. Measure which comments a human accepts, which are false positives, and how often the review misses a seeded defect.
+
+The next useful milestone is an agent that leaves a small number of actionable comments, clearly states its coverage, and fails visibly when it cannot complete the job.

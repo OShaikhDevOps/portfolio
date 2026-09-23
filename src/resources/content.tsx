@@ -193,25 +193,25 @@ const about: About = {
         description: "Supporting QPharma Inc. as a DevOps and Cloud Engineer, with responsibility for designing, automating, and securing AWS-based infrastructure and delivery pipelines.",
         achievements: [
           <>
-            Introduced GitOps with ArgoCD to reduce configuration drift and eliminate manual deployments.
+            Introduced GitOps with ArgoCD for Kubernetes workloads, keeping deployment configuration in version control to reduce drift and replace manual release steps.
           </>,
           <>
-            Automated CI/CD using GitHub Actions/Jenkins with integrated security scanning (Snyk, SonarQube, OWASP ZAP, Trivy).
+            Automated build, validation, and deployment workflows using GitHub Actions/Jenkins, integrating Snyk, SonarQube, OWASP ZAP, and Trivy security checks into the release process.
           </>,
           <>
             Containerized and optimized workloads on ECS/EKS, reducing AWS compute cost by ~30%.
           </>,
           <>
-            Automated infrastructure provisioning with Terraform and Ansible, cutting manual configuration work by ~60%.
+            Automated AWS infrastructure provisioning with Terraform and server configuration with Ansible, creating repeatable environment builds and cutting manual configuration work by ~60%.
           </>,
           <>
-            Modernized monitoring using CloudWatch, Prometheus, and Grafana to reduce MTTR and improve release confidence.
+            Modernized infrastructure and application monitoring using CloudWatch, Prometheus, and Grafana, bringing operational signals into release validation and incident investigation to reduce MTTR.
           </>,
         ],
         images: [
           // optional: leave the array empty if you don't want to display images
           {
-            src: "/images/projects/multi-az-disaster-recovery-with-terraform-and-aws/cover.svg",
+            src: "/images/projects/multi-az-disaster-recovery-with-terraform-and-aws/cover.webp",
             alt: "Multi-AZ Disaster Recovery Architecture on AWS",
             width: 16,
             height: 9,
@@ -225,19 +225,19 @@ const about: About = {
         description: "During my tenure at Systems Limited / Visionet, I advanced from Associate to Principal while leading cloud and DevOps initiatives for global enterprise clients including Tapestry, Regeneron, Digi Malaysia, and STC.",
         achievements: [
           <>
-            Designed CI/CD pipelines that reduced release cycles from weeks to days across multiple product teams.
+            Designed CI/CD pipelines spanning application builds, automated checks, and deployment workflows, reducing release cycles from weeks to days across multiple product teams.
           </>,
           <>
             Migrated legacy monolithic applications to Docker- and Kubernetes-based microservices, cutting infrastructure cost by ~20% and improving scalability.
           </>,
           <>
-            Implemented GitOps practices with ArgoCD and FluxCD for version-controlled, reliable deployments.
+            Implemented Kubernetes delivery with ArgoCD and FluxCD, using version-controlled deployment definitions to make environment changes traceable and releases repeatable.
           </>,
           <>
             Embedded DevSecOps tooling (Snyk, SonarQube, OWASP ZAP, Trivy, Dependency-Track) into pipelines to reduce critical vulnerabilities before production.
           </>,
           <>
-            Automated cloud infrastructure on AWS and GCP with Terraform, Pulumi, and CloudFormation.
+            Automated cloud infrastructure on AWS and GCP with Terraform, Pulumi, and CloudFormation, standardizing environment provisioning across enterprise delivery projects.
           </>,
           <>
             Mentored and led teams of up to 20 DevOps engineers delivering secure, scalable platforms for global clients.
@@ -354,10 +354,10 @@ const about: About = {
         images: [],
       },
       {
-        title: "AI / ML (learning & interests)",
+        title: "AI Automation & ML Engineering",
         description: (
           <>
-            Experimenting with scikit-learn, visualization (Matplotlib/Seaborn), and OpenCV for computer vision as side projects, with the goal of applying ML in observability and automation use-cases.
+            Built an automated AI pull request review agent using Amazon Bedrock, Python, and AWS Lambda. Exploring MLOps, predictive maintenance, and computer vision with scikit-learn and OpenCV, alongside data analysis with Pandas and NumPy.
           </>
         ),
         tags: [
@@ -449,8 +449,7 @@ const about: About = {
   },
 };
 
-// Blog configuration - soft deleted, can be re-enabled later
-// Blog configuration - enabled as a minimal stub so pages importing `blog` compile.
+// Technical writing on cloud infrastructure, delivery automation, and AI.
 const blog: Blog = {
   path: "/blog",
   label: "Blog",
