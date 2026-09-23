@@ -211,8 +211,8 @@ const about: About = {
         images: [
           // optional: leave the array empty if you don't want to display images
           {
-            src: "/images/projects/project-01/MultiAZ DR.jpg",
-            alt: "Once UI Project",
+            src: "/images/projects/multi-az-disaster-recovery-with-terraform-and-aws/cover.svg",
+            alt: "Multi-AZ Disaster Recovery Architecture on AWS",
             width: 16,
             height: 9,
           },
