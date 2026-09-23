@@ -357,7 +357,7 @@ const about: About = {
         title: "AI Automation & ML Engineering",
         description: (
           <>
-            Built an automated AI pull request review agent using Amazon Bedrock, Python, and AWS Lambda. Exploring MLOps, predictive maintenance, and computer vision with scikit-learn and OpenCV, alongside data analysis with Pandas and NumPy.
+            Built an automated AI pull request review agent using Amazon Bedrock, Python, and AWS Lambda, with an AWS alarm for high Bedrock consumption. Exploring MLOps, predictive maintenance, and computer vision with scikit-learn and OpenCV, alongside data analysis with Pandas and NumPy.
           </>
         ),
         tags: [
